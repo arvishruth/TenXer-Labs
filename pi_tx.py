@@ -1,10 +1,16 @@
 import serial
 import time
 
-arduino_serial = serial.Serial(port="/dev/ttyAMA0", baudrate=9600, timeout=.1)
+# Open serial connection
+arduino_serial = serial.Serial(port="/dev/ttyAMA0", baudrate=9600, timeout=1)
+
 try:
-        while True:
-                x = input("Enter a character: ")
-                arduino_serial.write(x.encode())
+    # Send characters repeatedly
+    message = "TenXer"
+    while True:
+        for char in message:
+            arduino_serial.write(char.encode())
+            time.sleep(0.1)
 except KeyboardInterrupt:
-        arduino_serial.close()
+    # Close serial connection
+    arduino_serial.close()
