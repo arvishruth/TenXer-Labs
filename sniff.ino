@@ -1,13 +1,11 @@
-String character;
-
-void setup(){
+void setup() {
   Serial.begin(9600);
 }
 
-void loop()
-{
+void loop() {
   if (Serial.available()) {
-  character = Serial.readString();
-  Serial.println((String)character);
-}
+    char character = Serial.read();
+    Serial.println(character);
+    delay(10); // Add a small delay to avoid overwhelming the serial monitor
+  }
 }
